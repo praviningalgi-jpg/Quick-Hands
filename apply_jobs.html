@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Apply for Job: {{ job.title }}</h2>
+  <p><strong>Location:</strong> {{ job.location }}</p>
+  <p><strong>Salary:</strong> {{ job.salary }}</p>
+  <p><strong>Description:</strong> {{ job.description }}</p>
+
+  <form method="POST">
+    <div class="mb-3">
+      <label for="cover_letter" class="form-label">Cover Letter</label>
+      <textarea id="cover_letter" name="cover_letter" class="form-control" rows="5" placeholder="Write your message here..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+  </form>
+</div>
+{% endblock %}
+

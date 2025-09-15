@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Job Applications</h2>
+
+  {% if applications %}
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Maid Name</th>
+        <th>Job Title</th>
+        <th>Cover Letter</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for app in applications %}
+      <tr>
+        <td>{{ app.maid_name }}</td>
+        <td>{{ app.title }}</td>
+        <td>{{ app.cover_letter }}</td>
+        <td>{{ app.status }}</td>
+        <td>
+          {% if app.status == 'pending' %}
+          <a href="{{ url_for('approve_application', app_id=app.id) }}" class="btn btn-sm btn-success">Approve</a>
+          <a href="{{ url_for('reject_application', app_id=app.id) }}" class="btn btn-sm btn-danger">Reject</a>
+          {% else %}
+          <span class="text-muted">{{ app.status.capitalize() }}</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No applications received yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
+
